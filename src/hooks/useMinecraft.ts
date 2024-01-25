@@ -14,7 +14,7 @@ const getLocalstorage = (key: string) => {
   }
 }
 
-const setLocalstorage = (key: string, val) => window.localStorage.setItem(key, JSON.stringify(val));
+const setLocalstorage = (key: string, val: any) => window.localStorage.setItem(key, JSON.stringify(val));
 
 interface MinecraftStore {
   texture: string,
