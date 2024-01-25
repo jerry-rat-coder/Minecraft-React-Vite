@@ -9,7 +9,7 @@ import TextureSelector from './components/TextureSelector'
 import ToasterProvider from './context/ToasterProvider'
 import Button from './components/Button'
 import Modal from './components/modal/Modal'
-import InstancedCubes from './components/InstancedCubes'
+// import InstancedCubes from './components/InstancedCubes'
 import { useModal } from './hooks/useModal'
 function App() {
   const { isOpen, onClose } = useModal();
