@@ -58,7 +58,7 @@ const Player = () => {
     if(actions.flying) {
       api.applyForce([0, 9.8, 0], [0, 0, 0]);
 
-      let newYVelocity = actions.jump ? JUMP : actions.desc ? -JUMP : 0;
+      const newYVelocity = actions.jump ? JUMP : actions.desc ? -JUMP : 0;
       api.velocity.set(finalVel.x, newYVelocity, finalVel.z);
       return;
     }

@@ -5,7 +5,7 @@ import { ThreeEvent } from "@react-three/fiber";
 
 import { useMinecraft } from "../hooks/useMinecraft";
 
-const ground = () => {
+const Ground = () => {
   const { addCube } = useMinecraft();
   const groundTexture = textures['groundTexture'];
   const [ref] = usePlane<Mesh>(() => ({
@@ -31,4 +31,4 @@ const ground = () => {
    );
 }
  
-export default ground;
+export default Ground;

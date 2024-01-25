@@ -28,21 +28,23 @@ const Cube: React.FC<ICube> = ({
     e.stopPropagation();
     
     // console.log(ref.current);
-    const { x, y, z } = ref.current?.position!;
-    const clickedFace = Math.floor(e.faceIndex! / 2);
-    // console.log(e.faceIndex, clickedFace); 
+    if(ref.current && ref.current.position) {
+      const { x, y, z } = ref.current.position;
+      const clickedFace = Math.floor(e.faceIndex! / 2);
+      // console.log(e.faceIndex, clickedFace); 
 
-    if(e.altKey) {
-      console.log('remove');
-      removeCube(x, y, z);
-      return;
+      if(e.altKey) {
+        console.log('remove');
+        removeCube(x, y, z);
+        return;
+      }
+      
+      const xx = [x + 1, x - 1, x, x, x, x];
+      const yy = [y, y, y + 1, y - 1, y, y];
+      const zz = [z, z, z, z, z + 1, z - 1];
+
+      addCube(xx[clickedFace], yy[clickedFace], zz[clickedFace]);
     }
-    
-    const xx = [x + 1, x - 1, x, x, x, x];
-    const yy = [y, y, y + 1, y - 1, y, y];
-    const zz = [z, z, z, z, z + 1, z - 1];
-
-    addCube(xx[clickedFace], yy[clickedFace], zz[clickedFace]);
   }
   // console.log(typeof textures);
   return ( 

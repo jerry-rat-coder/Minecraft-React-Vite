@@ -1,6 +1,12 @@
 import { nanoid } from "nanoid";
 import { create } from "zustand";
 
+interface ICube {
+  position: [number, number, number],
+  key: string,
+  texture: string
+}
+
 const getLocalstorage = (key: string) => {
   const val = window.localStorage.getItem(key);
   if (val?.length) {
@@ -8,12 +14,12 @@ const getLocalstorage = (key: string) => {
   }
 }
 
-const setLocalstorage = (key: string, val: any) => window.localStorage.setItem(key, JSON.stringify(val));
+const setLocalstorage = (key: string, val) => window.localStorage.setItem(key, JSON.stringify(val));
 
 interface MinecraftStore {
   texture: string,
-  cubes: any[],
-  ground: any[],
+  cubes: ICube[],
+  // ground: [],
   addCube: (x: number, y: number, z: number) => void,
   setTexture: (name: string) => void,
   removeCube: (x: number, y: number, z: number) => void,
@@ -21,36 +27,36 @@ interface MinecraftStore {
   saveWorld: () => void
 }
 
-const init = (count: number) => {
-  let res: any[] = [];
+// const init = (count: number) => {
+//   let res: [] = [];
 
-  for (let i = -count; i < count; ++i) {
-    for (let j = -count; j < count; ++j) {
-      if (i === 1 && j === 0) continue;
-      if (i === 1 && j === 1) continue;
-      if (i === 1 && j === -1) continue;
-      if (i === 0 && j === 1) continue;
-      if (i === 0 && j === 0) continue;
-      if (i === 0 && j === -1) continue;
-      if (i === -1 && j === 0) continue;
-      if (i === -1 && j === 1) continue;
-      if (i === -1 && j === -1) continue;
-      res = [...res, {
-        key: nanoid(),
-        position: [i, 0, j],
-        texture: 'dirt'
-      }]
-    }
-  }
-  return res;
-}
+//   for (let i = -count; i < count; ++i) {
+//     for (let j = -count; j < count; ++j) {
+//       if (i === 1 && j === 0) continue;
+//       if (i === 1 && j === 1) continue;
+//       if (i === 1 && j === -1) continue;
+//       if (i === 0 && j === 1) continue;
+//       if (i === 0 && j === 0) continue;
+//       if (i === 0 && j === -1) continue;
+//       if (i === -1 && j === 0) continue;
+//       if (i === -1 && j === 1) continue;
+//       if (i === -1 && j === -1) continue;
+//       res = [...res, {
+//         key: nanoid(),
+//         position: [i, 0, j],
+//         texture: 'dirt'
+//       }]
+//     }
+//   }
+//   return res;
+// }
 
 
 export const useMinecraft = create<MinecraftStore>((set) => ({
   texture: 'dirt',
   cubes: getLocalstorage('cubelist') || [],
   // cubes: init(50),
-  ground: init(20),
+  // ground: init(20),
   addCube: (x, y, z) => {
     set(prev => ({
       cubes: prev.cubes.concat({
@@ -69,12 +75,12 @@ export const useMinecraft = create<MinecraftStore>((set) => ({
     }))
   },
   setTexture: (name) => {
-    set(prev => ({
+    set(() => ({
       texture: name
     }))
   },
   resetWorld: () => {
-    set(prev => ({
+    set(() => ({
       cubes: []
     }))
   },

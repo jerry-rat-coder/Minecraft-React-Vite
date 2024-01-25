@@ -35,7 +35,7 @@ const TextureSelector = () => {
       log: actions.log
     }
 
-    const pressTexture = Object.entries(textures).find(([k, v]) => v);
+    const pressTexture = Object.entries(textures).find(([, v]) => v);
     if(pressTexture) {
       setActiveTexture(pressTexture[0]);
     }
