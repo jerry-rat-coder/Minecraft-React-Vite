@@ -28,7 +28,7 @@ interface MinecraftStore {
 }
 
 // const init = (count: number) => {
-//   let res: [] = [];
+//   let res: any[] = [];
 
 //   for (let i = -count; i < count; ++i) {
 //     for (let j = -count; j < count; ++j) {
@@ -55,7 +55,7 @@ interface MinecraftStore {
 export const useMinecraft = create<MinecraftStore>((set) => ({
   texture: 'dirt',
   cubes: getLocalstorage('cubelist') || [],
-  // cubes: init(50),
+  // cubes: init(20),
   // ground: init(20),
   addCube: (x, y, z) => {
     set(prev => ({

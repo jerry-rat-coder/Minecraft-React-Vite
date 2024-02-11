@@ -3,11 +3,14 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { Mesh, Vector3 } from "three";
 import { useKeyboard } from "../hooks/useKeyboard";
+import { useTextures } from "../hooks/useTextures";
 
 const SPEED = 4;
 const JUMP = 4;
+const look = 3;
 
 const Player = () => {
+  const { textures } = useTextures();
   const { actions } = useKeyboard();
   const { camera } = useThree();
   const [ref, api] = useSphere<Mesh>(() => ({
@@ -34,6 +37,7 @@ const Player = () => {
   useFrame(() => {
     camera.position.copy(new Vector3(pos.current[0], pos.current[1], pos.current[2]));
 
+    // camera.position.set(0, 10, 0);
     
     const frontDirectionVel = new Vector3(0, 0, 0);
     if(actions.moveForward) {
@@ -53,7 +57,7 @@ const Player = () => {
     finalVel.addVectors(frontDirectionVel, sideDirectionVel);
     finalVel.multiplyScalar(SPEED);
     finalVel.applyEuler(camera.rotation);
-    // api.velocity.set(finalVel.x, vel.current[1], finalVel.z);
+    api.velocity.set(finalVel.x, vel.current[1], finalVel.z);
 
     if(actions.flying) {
       api.applyForce([0, 9.8, 0], [0, 0, 0]);
@@ -73,7 +77,9 @@ const Player = () => {
 
 
   return ( 
-    <mesh ref={ref}>
+    <mesh ref={ref} >
+      <sphereGeometry />
+      <meshStandardMaterial attach='material' map={textures.ziTexture} />
     </mesh>  
   );
 }

@@ -1,39 +1,22 @@
 import { useEffect, useState } from "react";
 import { useMinecraft } from "../hooks/useMinecraft";
 import { useKeyboard } from "../hooks/useKeyboard";
-import {
-	dirtImg,
-	grassImg,
-	glassImg,
-	woodImg,
-	logImg,
-} from '../images/images'
-
-const images = {
-  dirt: dirtImg,
-  grass: grassImg,
-  glass: glassImg,
-  wood: woodImg,
-  log: logImg
-}
-
+import { useImages } from "../hooks/useImages";
 const TextureSelector = () => {
+
   const [visible, setVisible] = useState(false);
   const [activeTexture, setActiveTexture] = useMinecraft((state) => [
     state.texture,
     state.setTexture
   ])
+  const { trueImages } = useImages();
 
   const { actions } = useKeyboard();
 
+
   useEffect(() => {
-    const textures = {
-      dirt: actions.dirt,
-      grass: actions.grass,
-      glass: actions.glass,
-      wood: actions.wood,
-      log: actions.log
-    }
+    const { dirt, grass, glass, log, wood, zi } = actions;
+    const textures = { dirt, grass, glass, log, wood, zi };
 
     const pressTexture = Object.entries(textures).find(([, v]) => v);
     if(pressTexture) {
@@ -55,11 +38,13 @@ const TextureSelector = () => {
     visible && (
     <div className="fixed left-[50%] top-[75%] translate-x-[-50%] scale-[5]">
       {
-        Object.entries(images).map(([k, src]) => (
+        Object.entries(trueImages).map(([k, src]) => (
           <img 
             key={k}
             src={src}
             alt={k}
+            width={16}
+            height={16}
             className={
               `${k === activeTexture && ' border-2 border-red-500 border-solid'} inline-block`
             }

@@ -31,6 +31,9 @@ const actionByKeyCode = (keyCode: string) => {
   if (keyCode === 'Digit5') {
     return 'log'
   }
+  if (keyCode === 'Digit6') {
+    return 'zi'
+  }
   if (keyCode === 'KeyF') {
     return 'flying'
   }
@@ -54,7 +57,8 @@ export const useKeyboard = () => {
     glass: false,
     grass: false,
     wood: false,
-    log: false
+    log: false,
+    zi: false
   });
 
   const handleKeyDown = (e: KeyboardEvent) => {

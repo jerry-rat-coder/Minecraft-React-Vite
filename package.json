@@ -10,10 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.12.0",
+    "@cloudinary/url-gen": "^1.16.0",
     "@react-three/cannon": "^6.6.0",
     "@react-three/drei": "^9.93.0",
     "@react-three/fiber": "^8.15.13",
     "nanoid": "^5.0.4",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",

@@ -46,4 +46,6 @@ export default {
 - [x] Hover state on cubes
 - [x] Build a house
 - [x] Fly
+- [] Custom Ground
+- [] Custom Texture
   

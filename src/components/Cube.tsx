@@ -1,10 +1,10 @@
 import { useBox } from "@react-three/cannon";
 import { Mesh } from "three";
 // import { dirtTexture } from "../images/textures";
-import * as textures from '../images/textures'
 import { ThreeEvent } from "@react-three/fiber";
 import { useMinecraft } from "../hooks/useMinecraft";
 import { useState } from "react";
+import { useTextures } from "../hooks/useTextures";
 
 interface ICube {
   position: [number, number, number],
@@ -15,10 +15,12 @@ const Cube: React.FC<ICube> = ({
   position,
   textureName
 }) => {
+  const { textures } = useTextures();
+
   const [isHovered, setIsHovered] = useState(false);
 
   const { addCube, removeCube } = useMinecraft();
-  const texture = textures[`${textureName}Texture` as keyof typeof textures]
+  const texture = textures[`${textureName}Texture` as keyof typeof textures];
   const [ref] = useBox<Mesh>(() => ({
     type: 'Static',
     position

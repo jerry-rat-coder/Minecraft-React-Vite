@@ -4,7 +4,8 @@ import {
   grassImg,
   glassImg,
   woodImg,
-  logImg
+  logImg,
+  ziImg
 } from './images'
 
 const dirtTexture = new TextureLoader().load(dirtImg);
@@ -12,7 +13,8 @@ const grassTexture = new TextureLoader().load(grassImg);
 const glassTexture = new TextureLoader().load(glassImg);
 const woodTexture = new TextureLoader().load(woodImg);
 const logTexture = new TextureLoader().load(logImg);
-const groundTexture = new TextureLoader().load(grassImg)
+const groundTexture = new TextureLoader().load(grassImg);
+const ziTexture = new TextureLoader().load(ziImg);
 
 
 dirtTexture.magFilter = NearestFilter;
@@ -20,6 +22,8 @@ grassTexture.magFilter = NearestFilter;
 glassTexture.magFilter = NearestFilter;
 woodTexture.magFilter = NearestFilter;
 logTexture.magFilter = NearestFilter;
+ziTexture.magFilter = NearestFilter;
+
 groundTexture.magFilter = NearestFilter;
 groundTexture.wrapS = RepeatWrapping;
 groundTexture.wrapT = RepeatWrapping;
@@ -40,7 +44,8 @@ export {
   woodTexture,
   logTexture,
   // textureMap,
-  groundTexture
+  groundTexture,
+  ziTexture
 }
 
 
