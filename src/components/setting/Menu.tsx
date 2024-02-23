@@ -1,32 +1,36 @@
-import { useMinecraft } from "../hooks/useMinecraft";
-import { useModal } from "../hooks/useModal";
+import { useMinecraft } from "../../hooks/useMinecraft";
+import { useModal } from "../../hooks/useModal";
 import toast from "react-hot-toast";
-import UploadWidget from "./UploadWidget";
-import Button from "./Button";
+import UploadWidget from "../main/UploadWidget";
+import Button from "../Button";
 
-const Buttons = () => {
-  const [resetWorld, saveWorld] = useMinecraft(state => [state.resetWorld, state.saveWorld]);
+const Menu = () => {
+  const [resetWorld, saveWorld] = useMinecraft((state) => [
+    state.resetWorld,
+    state.saveWorld,
+  ]);
   const { onOpen } = useModal();
 
-  return ( 
+  return (
     <div className="fixed top-4 h-8 w-full flex items-center justify-center ">
       <div className="flex gap-4 items-center">
-        <Button 
+        <Button
           color="sky"
           title="Reset"
           onClick={() => {
             resetWorld();
-            toast.success('Success Reset the World.');
-          }} />
-        <Button 
+            toast.success("Success Reset the World.");
+          }}
+        />
+        <Button
           color="green"
           title="Save"
           onClick={() => {
             saveWorld();
-            toast.success('Success Save the World.')
+            toast.success("Success Save the World.");
           }}
         />
-        <Button 
+        <Button
           color="orange"
           title="Help"
           onClick={() => {
@@ -36,7 +40,7 @@ const Buttons = () => {
         <UploadWidget />
       </div>
     </div>
-   );
-}
- 
-export default Buttons;
+  );
+};
+
+export default Menu;

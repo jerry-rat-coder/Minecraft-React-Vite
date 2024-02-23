@@ -1,18 +1,18 @@
-import { PointerLockControls, Sky } from '@react-three/drei'
-import { Canvas } from '@react-three/fiber'
-import Ground from './components/Ground'
-import { Physics } from '@react-three/cannon'
-import Player from './components/Player'
+import { PointerLockControls, Sky } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import Ground from "./components/main/Ground";
+import { Physics } from "@react-three/cannon";
+import Player from "./components/main/Player";
 // import Cube from './components/Cube'
-import Cubes from './components/Cubes'
-import TextureSelector from './components/TextureSelector'
-import ToasterProvider from './context/ToasterProvider'
-import Button from './components/Buttons'
-import Modal from './components/modal/Modal'
+import Cubes from "./components/main/Cubes";
+import TextureSelector from "./components/main/TextureSelector";
+import ToasterProvider from "./context/ToasterProvider";
+import Menu from "./components/setting/Menu";
+import HelpModal from "./components/modal/HelpModal";
 // import InstancedCubes from './components/InstancedCubes'
-import { useModal } from './hooks/useModal'
+
 function App() {
-  const { isOpen, onClose } = useModal();
+  // const { isOpen, onClose } = useModal();
 
   return (
     <>
@@ -28,7 +28,8 @@ function App() {
           {/* <InstancedCubes/> */}
         </Physics>
       </Canvas>
-      <div className='
+      <div
+        className="
         fixed 
         top-[50%] 
         left-[50%] 
@@ -37,14 +38,15 @@ function App() {
         text-white 
         text-3xl 
         cursor-default
-        '>+</div>
-        <TextureSelector />
-        <Button />
-        <Modal isOpen={isOpen} onClose={onClose}  />
+        "
+      >
+        +
+      </div>
+      <TextureSelector />
+      <Menu />
+      <HelpModal />
     </>
-  )
+  );
 }
 
-
-
-export default App
+export default App;

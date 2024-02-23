@@ -1,3 +1,11 @@
+# Minecraft  ver1.0
+
+使用react + ts + vite + threejs构建
+
+
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -46,6 +54,6 @@ export default {
 - [x] Hover state on cubes
 - [x] Build a house
 - [x] Fly
-- [] Custom Ground
-- [] Custom Texture
-  
+- [x] Custom Texture（Upload by CDN）
+- [x] Help  modal
+

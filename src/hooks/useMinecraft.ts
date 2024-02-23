@@ -2,9 +2,9 @@ import { nanoid } from "nanoid";
 import { create } from "zustand";
 
 interface ICube {
-  position: [number, number, number],
-  key: string,
-  texture: string
+  position: [number, number, number];
+  key: string;
+  texture: string;
 }
 
 const getLocalstorage = (key: string) => {
@@ -12,19 +12,20 @@ const getLocalstorage = (key: string) => {
   if (val?.length) {
     return JSON.parse(val);
   }
-}
+};
 
-const setLocalstorage = (key: string, val: any) => window.localStorage.setItem(key, JSON.stringify(val));
+const setLocalstorage = (key: string, val: any) =>
+  window.localStorage.setItem(key, JSON.stringify(val));
 
 interface MinecraftStore {
-  texture: string,
-  cubes: ICube[],
+  texture: string;
+  cubes: ICube[];
   // ground: [],
-  addCube: (x: number, y: number, z: number) => void,
-  setTexture: (name: string) => void,
-  removeCube: (x: number, y: number, z: number) => void,
-  resetWorld: () => void,
-  saveWorld: () => void
+  addCube: (x: number, y: number, z: number) => void;
+  setTexture: (name: string) => void;
+  removeCube: (x: number, y: number, z: number) => void;
+  resetWorld: () => void;
+  saveWorld: () => void;
 }
 
 // const init = (count: number) => {
@@ -41,54 +42,55 @@ interface MinecraftStore {
 //       if (i === -1 && j === 0) continue;
 //       if (i === -1 && j === 1) continue;
 //       if (i === -1 && j === -1) continue;
-//       res = [...res, {
-//         key: nanoid(),
-//         position: [i, 0, j],
-//         texture: 'dirt'
-//       }]
+//       res = [
+//         ...res,
+//         {
+//           key: nanoid(),
+//           position: [i, 0, j],
+//           texture: "dirt",
+//         },
+//       ];
 //     }
 //   }
 //   return res;
-// }
-
+// };
 
 export const useMinecraft = create<MinecraftStore>((set) => ({
-  texture: 'dirt',
-  cubes: getLocalstorage('cubelist') || [],
+  texture: "dirt",
+  cubes: getLocalstorage("cubelist") || [],
   // cubes: init(20),
   // ground: init(20),
   addCube: (x, y, z) => {
-    set(prev => ({
+    set((prev) => ({
       cubes: prev.cubes.concat({
         key: nanoid(),
         position: [x, y, z],
-        texture: prev.texture
-      })
-    }))
+        texture: prev.texture,
+      }),
+    }));
   },
   removeCube: (x, y, z) => {
-    set(prev => ({
-      cubes: prev.cubes.filter(cube => {
+    set((prev) => ({
+      cubes: prev.cubes.filter((cube) => {
         const [X, Y, Z] = cube.position;
         return x !== X || y !== Y || z !== Z;
-      })
-    }))
+      }),
+    }));
   },
   setTexture: (name) => {
     set(() => ({
-      texture: name
-    }))
+      texture: name,
+    }));
   },
   resetWorld: () => {
     set(() => ({
-      cubes: []
-    }))
+      cubes: [],
+    }));
   },
   saveWorld: () => {
-    set(prev => {
-      setLocalstorage('cubelist', prev.cubes);
+    set((prev) => {
+      setLocalstorage("cubelist", prev.cubes);
       return prev;
-    })
-  }
-
-}))
+    });
+  },
+}));
