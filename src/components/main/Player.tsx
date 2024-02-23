@@ -7,7 +7,6 @@ import { useTextures } from "../../hooks/useTextures";
 
 const SPEED = 4;
 const JUMP = 4;
-const look = 3;
 
 const Player = () => {
   const { textures } = useTextures();
