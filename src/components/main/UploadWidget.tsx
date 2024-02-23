@@ -18,7 +18,7 @@ const UploadWidget = () => {
 
   return (
     <Button
-      color="purple"
+      className="bg-purple-400"
       title="Upload"
       onClick={() => {
         window.cloudinary.openUploadWidget(

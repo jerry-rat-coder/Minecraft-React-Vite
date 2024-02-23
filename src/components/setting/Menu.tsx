@@ -15,7 +15,7 @@ const Menu = () => {
     <div className="fixed top-4 h-8 w-full flex items-center justify-center ">
       <div className="flex gap-4 items-center">
         <Button
-          color="sky"
+          className="bg-sky-400"
           title="Reset"
           onClick={() => {
             resetWorld();
@@ -23,7 +23,7 @@ const Menu = () => {
           }}
         />
         <Button
-          color="green"
+          className="bg-green-400"
           title="Save"
           onClick={() => {
             saveWorld();
@@ -31,7 +31,7 @@ const Menu = () => {
           }}
         />
         <Button
-          color="orange"
+          className="bg-orange-400"
           title="Help"
           onClick={() => {
             onOpen();
